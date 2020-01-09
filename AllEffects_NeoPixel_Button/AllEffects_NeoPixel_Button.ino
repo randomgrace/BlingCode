@@ -10,7 +10,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800)
 #define BUTTON 2
 byte selectedEffect=0;
 byte begin_it=0;
-byte max_routines=18;ma
+byte max_routines=18;
 
 void setup()
 {
