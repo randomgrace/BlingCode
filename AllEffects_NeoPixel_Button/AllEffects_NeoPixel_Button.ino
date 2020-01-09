@@ -10,6 +10,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800)
 #define BUTTON 2
 byte selectedEffect=0;
 byte begin_it=0;
+byte max_routines=18;ma
 
 void setup()
 {
@@ -31,7 +32,7 @@ void loop() {
 
   EEPROM.get(0,selectedEffect); 
   
-  if(selectedEffect>18) { 
+  if(selectedEffect>max_routines) { 
     selectedEffect=0;
     EEPROM.put(0,0); 
   } 
