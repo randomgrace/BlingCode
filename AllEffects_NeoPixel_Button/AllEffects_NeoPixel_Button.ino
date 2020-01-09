@@ -8,26 +8,41 @@
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
 #define BUTTON 2
-byte selectedEffect=14;
+byte selectedEffect=0;
+byte begin_it=0;
 
 void setup()
 {
+  // Configure the serial terminal for debug output and user input
+  Serial.begin(9600);
   strip.begin();
   strip.show(); // Initialize all pixels to 'off'
   pinMode(2,INPUT_PULLUP);  // internal pull-up resistor
   attachInterrupt (digitalPinToInterrupt (BUTTON), changeEffect, CHANGE); // pressed
+  begin_it=0;
+
+  // Tell the world we're ready to go!
+  Serial.println("Setup complete.");
+  
 }
 
 // *** REPLACE FROM HERE ***
 void loop() {
-  /* 
+
   EEPROM.get(0,selectedEffect); 
   
   if(selectedEffect>18) { 
     selectedEffect=0;
     EEPROM.put(0,0); 
   } 
-*/  
+
+  if(begin_it<1) {
+    Serial.print("Effect: ");
+    Serial.println(selectedEffect);
+    begin_it=1;
+  }
+  
+ 
   switch(selectedEffect) {
     
     case 0  : {
